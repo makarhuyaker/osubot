@@ -1,0 +1,1 @@
+worker: osubot.py
