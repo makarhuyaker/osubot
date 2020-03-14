@@ -3,3 +3,4 @@ aiohttp
 pip
 discord.py
 websockets
+pylint
