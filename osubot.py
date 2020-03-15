@@ -14,7 +14,7 @@ async def on_ready():
 
 @Bot.command(pass_context= True)
 async def help(ctx):
-    emb = discord.Embed(color=0xf90aff, description="<a:osivisualizer:688403122523209731>Привет я osu!bot мой префикс `osu!` \n `help` Показывает это меню \n `mute` Выдает мут \n `kick` Кикает участника с сервера \n `unmute` Размучивает участника \n `invite` Пригласить бота к себе на сервер! \n `eval` Команда создателя ее невозможно использовать \n `ping` Проверить пинг бота комманда бесполезна \n `updates` Обновления бота \n `clear` Очистить чат в пределах 1000 сообщений")
+    emb = discord.Embed(color=0xf90aff, description="<a:osivisualizer:688403122523209731>Привет я osu!bot мой префикс `osu!` \n Стандартные комманды:\n `say` Сказать что то через бота\n `mute` Выдает мут пользователю\n `help` Показывает это меню\n `unmute` Снимает мут с пользователя\n `kick` Кикнет пользователя\n `minesweeper` Сапер теперь в дискорде\n `info` Информация о боте\n `ping` Проверка пинга бота \n `invite` Пригласить бота к себе на сервер\n `report` Отправить баг репорт создателю\n `updates` Обновления бота\n `8ball` Задай вопрос боту!\n Комманды создателя:\n `crd` Перезагрузка cogs бота\n `eval` Выполнение строк кода")
     emb.set_footer(text="osu!bot copyright 2020-2020", icon_url="https://media.discordapp.net/attachments/675294482991808513/687743226102546545/lazer.png?width=585&height=585")
     await ctx.send(embed = emb)
 
@@ -39,19 +39,19 @@ async def ping(ctx):
 @commands.has_permissions(administrator=True)
 async def kick(ctx, member:discord.Member = None):
     if not member:
-        emb = discord.Embed(color=0xf90aff, description="**Укажите кого надо кикнуть!<:redTick:596576672149667840>**")
+        emb = discord.Embed(color=0xf90aff, title = "osu!kick", description="**Укажите кого надо кикнуть!<:redTick:596576672149667840>**")
         emb.set_footer(text="osu!bot Copyright 2020-2020", icon_url="https://media.discordapp.net/attachments/675294482991808513/687743226102546545/lazer.png?width=585&height=585")
         await ctx.send(embed = emb)
         return
     await member.kick()
-    emb = discord.Embed(description=f"{member.mention} **Был кикнут!<:greenTick:596576670815879169>**")
+    emb = discord.Embed(color=0xf90aff, title = "osu!kick", description=f"{member.mention} **Был кикнут!<:greenTick:596576670815879169>**")
     emb.set_footer(text="osu!bot Copyright 2020-2020", icon_url="https://media.discordapp.net/attachments/675294482991808513/687743226102546545/lazer.png?width=585&height=585")
     await ctx.send(embed = emb)
 
 @kick.error
 async def kick_error(ctx, error):
     if isinstance(error, commands.CheckFailure):
-      emb = discord.Embed(color=0xf90aff, description="**Ты не можешь использовать эту комманду<:redTick:596576672149667840>**")
+      emb = discord.Embed(color=0xf90aff, title = "osu!kick", description="**Ты не можешь использовать эту комманду<:redTick:596576672149667840>**")
       emb.set_footer(text="osu!bot Copyright 2020-2020", icon_url="https://media.discordapp.net/attachments/675294482991808513/687743226102546545/lazer.png?width=585&height=585")
       await ctx.send(embed = emb)
 
@@ -59,11 +59,11 @@ async def kick_error(ctx, error):
 @commands.has_permissions(administrator=True)
 async def mute(ctx, member: discord.Member=None):
     if not member:
-        emb = discord.Embed(color=0xf90aff, description="**Укажите кого надо замутить!<:redTick:596576672149667840>**")
+        emb = discord.Embed(color=0xf90aff, title = "osu!mute", description="**Укажите кого надо замутить!<:redTick:596576672149667840>**")
         emb.set_footer(text="osu!bot Copyright 2020-2020", icon_url="https://media.discordapp.net/attachments/675294482991808513/687743226102546545/lazer.png?width=585&height=585")
         await ctx.send(embed = emb)
         return
-    emb = discord.Embed(color=0xf90aff, description=f"{member.mention} **Был замучен!<:greenTick:596576670815879169>**")
+    emb = discord.Embed(color=0xf90aff, title = "osu!mute", description=f"{member.mention} **Был замучен!<:greenTick:596576670815879169>**")
     emb.set_footer(text="osu!bot Copyright 2020-2020", icon_url="https://media.discordapp.net/attachments/675294482991808513/687743226102546545/lazer.png?width=585&height=585")
     await ctx.send(embed = emb)
     role = discord.utils.get(ctx.guild.roles, name="Muted")
@@ -72,7 +72,7 @@ async def mute(ctx, member: discord.Member=None):
 @mute.error
 async def mute_error(ctx, error):
     if isinstance(error, commands.CheckFailure):
-        emb = discord.Embed(color=0xf90aff, description="**Ты не можешь замутить этого пользователя!<:redTick:596576672149667840>**")
+        emb = discord.Embed(color=0xf90aff, title = "osu!mute", description="**Ты не можешь замутить этого пользователя!<:redTick:596576672149667840>**")
         emb.set_footer(text="osu!bot Copyright 2020-2020", icon_url="https://media.discordapp.net/attachments/675294482991808513/687743226102546545/lazer.png?width=585&height=585")
         await ctx.send(embed = emb)
  
@@ -80,11 +80,11 @@ async def mute_error(ctx, error):
 @commands.has_permissions(administrator=True)
 async def unmute(ctx, member: discord.Member=None):
     if not member:
-        emb = discord.Embed(color=0xf90aff, description="**Укажите кого надо размутить!<:redTick:596576672149667840>**")
+        emb = discord.Embed(color=0xf90aff, title = "osu!unmute", description="**Укажите кого надо размутить!<:redTick:596576672149667840>**")
         emb.set_footer(text="osu!bot Copyright 2020-2020", icon_url="https://media.discordapp.net/attachments/675294482991808513/687743226102546545/lazer.png?width=585&height=585")
         await ctx.send(embed = emb)
         return
-    emb = discord.Embed(color=0xf90aff, description=f"{member.mention} **Был размучен!<:greenTick:596576670815879169>**")
+    emb = discord.Embed(color=0xf90aff, title = "osu!unmute", description=f"{member.mention} **Был размучен!<:greenTick:596576670815879169>**")
     emb.set_footer(text="osu!bot Copyright 2020-2020", icon_url="https://media.discordapp.net/attachments/675294482991808513/687743226102546545/lazer.png?width=585&height=585")
     await ctx.send(embed = emb)    
     role = discord.utils.get(ctx.guild.roles, name="Muted")
@@ -93,13 +93,13 @@ async def unmute(ctx, member: discord.Member=None):
 @mute.error
 async def unmute_error(ctx, error):
     if isinstance(error, commands.CheckFailure):
-        emb = discord.Embed(color=0xf90aff, description="**Ты не можешь размутить этого пользователя!<:redTick:596576672149667840>**")
+        emb = discord.Embed(color=0xf90aff, title = "osu!unmute", description="**Ты не можешь размутить этого пользователя!<:redTick:596576672149667840>**")
         emb.set_footer(text="osu!bot Copyright 2020-2020", icon_url="https://media.discordapp.net/attachments/675294482991808513/687743226102546545/lazer.png?width=585&height=585")
         await ctx.send(embed = emb)
 
 @Bot.command(pass_context= True)
 async def invite(ctx):
-    emb = discord.Embed(color=0xf90aff, description="[Пригласить бота!](https://discordapp.com/oauth2/authorize?client_id=684136563017515038&scope=bot&permissions=66186303)")
+    emb = discord.Embed(color=0xf90aff, title = "osu!invite", description="[Пригласить бота!](https://discordapp.com/oauth2/authorize?client_id=684136563017515038&scope=bot&permissions=66186303)")
     emb.set_footer(text="osu!bot copyright 2020-2020", icon_url="https://media.discordapp.net/attachments/675294482991808513/687743226102546545/lazer.png?width=585&height=585")
     await ctx.send(embed = emb)
 
@@ -113,7 +113,7 @@ async def lox(ctx, arg):
 
 @Bot.command(name= 'updates', pass_context=True)
 async def hui(ctx):
-    emb = discord.Embed(color=0xf90aff, description="** <:toker:685203815288275106>Обновления бота: Бот релизнут <:sanitar:678951482506346496>**")
+    emb = discord.Embed(color=0xf90aff, title = "osu!updates", description="** <:toker:685203815288275106>Обновления бота: Бот релизнут <:sanitar:678951482506346496>**")
     emb.set_footer(text="osu!bot Copyright 2020-2020", icon_url="https://media.discordapp.net/attachments/675294482991808513/687743226102546545/lazer.png?width=585&height=585")
     await ctx.send(embed = emb)
 
@@ -157,8 +157,8 @@ async def report(ctx, *args):
 
 @Bot.command(name= 'info', pass_context=True)
 async def loh(ctx):
-    emb = discord.Embed(color=0xf90aff, description="**Привет, я osu!bot \n Мой создатель: insert worst nightmare#9035 \n Помощники в разработке: MrModer#6697 и mihagreen#1082 \n Внимание \n Бот все еще разрабатывается хоть он и релизнут но все же он еще не полностью готов**")
+    emb = discord.Embed(color=0xf90aff, title = "osu!info", description="**Привет, я osu!bot \n Мой создатель: insert#9035 \n Помощники в разработке: MrModer#6697 и mihagreen#1082 \n Внимание \n Бот все еще разрабатывается хоть он и релизнут но все же он еще не полностью готов**")
     emb.set_footer(text="osu!bot Copyright 2020-2020", icon_url="https://media.discordapp.net/attachments/675294482991808513/687743226102546545/lazer.png?width=585&height=585")
     await ctx.send(embed = emb)
 
-Bot.run("Njg0MTM2NTYzMDE3NTE1MDM4.XmQqhQ.kf5VSZl-2Bx6MUWCVjW2ZRiqTfY")
+Bot.run("token")
