@@ -144,7 +144,7 @@ async def say(ctx, *, msg):
     )
     await ctx.send(embed = embed)
 
-initial_extensions = ['status', 'minesweeper', 'inter','osu'] 
+initial_extensions = ['status', 'minesweeper', 'osu'] 
 
 def reloader(ctx):
     for extension in initial_extensions:
