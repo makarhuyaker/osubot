@@ -1,1 +1,1 @@
-worker: osubot.py
+worker: python osubot.py
