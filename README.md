@@ -1,4 +1,4 @@
 # osu!bot
-Very good discord bot written an discord.py
-Is bot have 14 commands
+Хороший дискорд бот написанный на discord.py, залит сюда как исходник хорошего бота.
+[Мой сервер дискорд](https://discord.gg/fKvntbQ)
 
